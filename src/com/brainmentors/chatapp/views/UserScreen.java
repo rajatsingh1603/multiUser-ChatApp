@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
@@ -30,11 +31,43 @@ public class UserScreen extends JFrame {
 					
 	}
 	
-	public void register() {
+	UserDAO userDAO = new UserDAO();
+	
+	private void doLogin() {
+		
 		String userId = textField.getText();
 		char [] password = passwordField.getPassword();  //getpassword for not showing password on console
 		
-		UserDAO userDAO = new UserDAO();
+		
+		UserDTO userDTO = new UserDTO(userId, password);
+		try {
+			String message = "";
+			if(userDAO.isLogin(userDTO)) {
+				message = "Welcome " + userId;
+				JOptionPane.showMessageDialog(this, message);
+				setVisible(false);
+				dispose(); //removes from memory
+				Dashboard dashboard = new Dashboard(message); 
+				dashboard.setVisible(true);
+			}
+			else {
+				message = "Invalid userId or Password";
+				JOptionPane.showMessageDialog(this, message);
+			}
+			
+//			JOptionPane.showMessageDialog(this, message);
+		} catch (ClassNotFoundException | NoSuchAlgorithmException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private void register() {
+		String userId = textField.getText();
+		char [] password = passwordField.getPassword();  //getpassword for not showing password on console
+		
+		
 		UserDTO userDTO = new UserDTO(userId, password);
 		
 		try {
@@ -99,6 +132,11 @@ public class UserScreen extends JFrame {
 		getContentPane().add(passwordField);
 		
 		JButton loginbtn = new JButton("Login");
+		loginbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				doLogin();
+			}
+		});
 		loginbtn.setFont(new Font("Tahoma", Font.BOLD, 20));
 		loginbtn.setBounds(418, 321, 136, 42);
 		getContentPane().add(loginbtn);
