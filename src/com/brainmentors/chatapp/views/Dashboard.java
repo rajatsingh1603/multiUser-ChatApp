@@ -12,6 +12,10 @@ import javax.swing.SwingConstants;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Dashboard extends JFrame {
 
@@ -53,6 +57,17 @@ public class Dashboard extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setIcon(new ImageIcon(Dashboard.class.getResource("/images/iStock-1219032156.jpg")));
 		contentPane.add(lblNewLabel, BorderLayout.CENTER);
+		
+		JButton logout = new JButton("LogOut");
+		logout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UserScreen userScreen = new UserScreen();
+				setVisible(false);
+				
+			}
+		});
+		logout.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		contentPane.add(logout, BorderLayout.SOUTH);
 	}
 
 }

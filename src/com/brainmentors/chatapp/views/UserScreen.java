@@ -57,10 +57,7 @@ public class UserScreen extends JFrame {
 	private void doLogin() {
 		
 		String userId = textField.getText();
-		char [] password = passwordField.getPassword(); 
-		String email = emailField.getText();
-		String city = cityField.getText();
-		String phone = phoneField.getText();//getpassword for not showing password on console
+		char [] password = passwordField.getPassword(); //getpassword for not showing password on console
 		
 		
 		UserDTO userDTO = new UserDTO(userId, password );
