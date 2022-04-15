@@ -12,6 +12,35 @@ import com.brainmentors.chatapp.utils.Encryption;
 
 public class UserDAO {
 	
+	public static int changePassword(String userId , char [] np ) throws SQLException, NoSuchAlgorithmException, ClassNotFoundException {
+		int rs = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+		
+		final String SQL = "UPDATE users set password=? WHERE userid=?";
+		
+		con = CommanDAO.createConnection();
+		pstmt = con.prepareStatement(SQL);
+		String encryptedPwd = Encryption.passwordEncrypt(new String(np));
+		pstmt.setString(1, encryptedPwd);
+		pstmt.setString(2, userId);
+		rs = pstmt.executeUpdate();
+		return rs;
+		}
+		
+		finally {
+			if( con != null) {
+				con.close();
+			}
+			if(pstmt != null) {
+				pstmt.close();
+			}
+		}
+		
+	}
+	
 	public boolean isLogin(UserDTO userDTO) throws SQLException, ClassNotFoundException, NoSuchAlgorithmException {
 		Connection con = null;
 		PreparedStatement pstmt = null;

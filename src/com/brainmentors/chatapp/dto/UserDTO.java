@@ -40,6 +40,15 @@ public class UserDTO {
 		this.phone = phone;
 		
 	}
+	
+	public UserDTO(String userId) {
+		this.userId = userId;
+	}
+	
+	public UserDTO(String userId, char[] password) {
+		this.userId = userId;
+		this.password = password;
+	}
 
 	public String getUserId() {
 		return userId;
