@@ -21,6 +21,10 @@ import com.brainmentors.chatapp.dto.UserDTO;
 public class UserScreen extends JFrame {
 	private JTextField textField;
 	private JPasswordField passwordField;
+	private JTextField emailField;
+	private JTextField cityField;
+	private JTextField phoneField;
+	
 
 	
 
@@ -33,13 +37,17 @@ public class UserScreen extends JFrame {
 	
 	UserDAO userDAO = new UserDAO();
 	
+	
 	private void doLogin() {
 		
 		String userId = textField.getText();
-		char [] password = passwordField.getPassword();  //getpassword for not showing password on console
+		char [] password = passwordField.getPassword(); 
+		String email = emailField.getText();
+		String city = cityField.getText();
+		String phone = phoneField.getText();//getpassword for not showing password on console
 		
 		
-		UserDTO userDTO = new UserDTO(userId, password);
+		UserDTO userDTO = new UserDTO(userId, password , email , city , phone);
 		try {
 			String message = "";
 			if(userDAO.isLogin(userDTO)) {
@@ -66,9 +74,14 @@ public class UserScreen extends JFrame {
 	private void register() {
 		String userId = textField.getText();
 		char [] password = passwordField.getPassword();  //getpassword for not showing password on console
+		String email = emailField.getText();
+		String city = cityField.getText();
+		String phone = phoneField.getText();
+		System.out.println(userId + " " + " " + password.toString() + email + city + phone);
 		
 		
-		UserDTO userDTO = new UserDTO(userId, password);
+		
+		UserDTO userDTO = new UserDTO(userId, password,email,city,phone);
 		
 		try {
 		int result = userDAO.add(userDTO); //passing address through add(userDTO) , which is a light weight process
@@ -91,7 +104,7 @@ public class UserScreen extends JFrame {
 			System.out.println("Generic exception");
 			ex.printStackTrace(); //where is the issue
 		}
-		System.out.println(userId + " " + password + " " + password.toString());
+//		System.out.println(userId + " " + password + " " + password.toString() + email + city + phone);
 	}
 
 	/**
@@ -138,7 +151,7 @@ public class UserScreen extends JFrame {
 			}
 		});
 		loginbtn.setFont(new Font("Tahoma", Font.BOLD, 20));
-		loginbtn.setBounds(418, 321, 136, 42);
+		loginbtn.setBounds(418, 516, 136, 42);
 		getContentPane().add(loginbtn);
 		
 		JButton btnRegister = new JButton("Register");
@@ -148,9 +161,42 @@ public class UserScreen extends JFrame {
 			}
 		});
 		btnRegister.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btnRegister.setBounds(600, 321, 136, 42);
+		btnRegister.setBounds(600, 516, 136, 42);
 		getContentPane().add(btnRegister);
-		setSize(1089, 466);
+		
+		JLabel lblEmail = new JLabel("E-mail");
+		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblEmail.setBounds(390, 297, 113, 28);
+		getContentPane().add(lblEmail);
+		
+		JLabel lblCity = new JLabel("City");
+		lblCity.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblCity.setBounds(390, 366, 113, 28);
+		getContentPane().add(lblCity);
+		
+		emailField = new JTextField();
+		emailField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		emailField.setColumns(10);
+		emailField.setBounds(550, 283, 231, 42);
+		getContentPane().add(emailField);
+		
+		cityField = new JTextField();
+		cityField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		cityField.setColumns(10);
+		cityField.setBounds(550, 359, 231, 42);
+		getContentPane().add(cityField);
+		
+		JLabel lblPhone = new JLabel("Phone ");
+		lblPhone.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblPhone.setBounds(390, 442, 113, 28);
+		getContentPane().add(lblPhone);
+		
+		phoneField = new JTextField();
+		phoneField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		phoneField.setColumns(10);
+		phoneField.setBounds(550, 431, 231, 42);
+		getContentPane().add(phoneField);
+		setSize(1186, 667);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);

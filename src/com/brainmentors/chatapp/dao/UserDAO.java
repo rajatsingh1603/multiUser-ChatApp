@@ -49,7 +49,7 @@ public class UserDAO {
 	}
 	public int add(UserDTO userDTO) throws ClassNotFoundException, SQLException, Exception {
 		
-		System.out.println("Rec : " + userDTO.getUserId() + " " + userDTO.getPassword());
+//		System.out.println("Rec : " + userDTO.getUserId() + " " + userDTO.getPassword() + " " + userDTO.getEmail() + " " + userDTO.getCity() + " " + userDTO.getPhone());
 		
 		//inserting it into database
 		Connection connection = null; 
@@ -63,7 +63,7 @@ public class UserDAO {
  		
  		//step-2 query 
  		stmt = connection.createStatement();
- 		int record = stmt.executeUpdate("insert into users (userid, password) values('" + userDTO.getUserId() + "' , '" + Encryption.passwordEncrypt( new String(userDTO.getPassword())) + "')"); //insert , delete , update
+ 		int record = stmt.executeUpdate("insert into users (userid, password,email,city,phone)  values('" + userDTO.getUserId() + "' , '" + Encryption.passwordEncrypt( new String(userDTO.getPassword())) + "' , '" +  userDTO.getEmail() + "' , '"  +  userDTO.getCity() + "' , '" + userDTO.getPhone() + "') "); //insert , delete , update
  		
 		return record;   // 0 or 1
 		}
