@@ -38,12 +38,22 @@ public class UserScreen extends JFrame {
 	UserDAO userDAO = new UserDAO();
 	
 	
+	private void clearField() {
+		
+		
+		textField.setText("");
+		passwordField.setText("");
+		emailField.setText("");
+		cityField.setText("");
+		phoneField.setText("");
+	}
 	
 	private void changePassword() {
 		ChangePassword changePassword = new ChangePassword();
 		changePassword.setVisible(true);
 		
 	}
+	
 	private void doLogin() {
 		
 		String userId = textField.getText();
@@ -157,7 +167,7 @@ public class UserScreen extends JFrame {
 			}
 		});
 		loginbtn.setFont(new Font("Tahoma", Font.BOLD, 20));
-		loginbtn.setBounds(367, 516, 136, 42);
+		loginbtn.setBounds(305, 516, 136, 42);
 		getContentPane().add(loginbtn);
 		
 		JButton btnRegister = new JButton("Register");
@@ -167,7 +177,7 @@ public class UserScreen extends JFrame {
 			}
 		});
 		btnRegister.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btnRegister.setBounds(549, 516, 136, 42);
+		btnRegister.setBounds(477, 516, 136, 42);
 		getContentPane().add(btnRegister);
 		
 		JLabel lblEmail = new JLabel("E-mail");
@@ -203,10 +213,6 @@ public class UserScreen extends JFrame {
 		phoneField.setBounds(550, 431, 231, 42);
 		getContentPane().add(phoneField);
 		
-		JButton button = new JButton("New button");
-		button.setBounds(600, 520, 85, 21);
-		getContentPane().add(button);
-		
 		JButton chngPswd = new JButton("Change Pass");
 		chngPswd.setFont(new Font("Tahoma", Font.BOLD, 15));
 		chngPswd.addActionListener(new ActionListener() {
@@ -214,8 +220,18 @@ public class UserScreen extends JFrame {
 				changePassword();
 			}
 		});
-		chngPswd.setBounds(720, 516, 136, 42);
+		chngPswd.setBounds(645, 518, 136, 42);
 		getContentPane().add(chngPswd);
+		
+		JButton clear = new JButton("Clear");
+		clear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clearField();
+			}
+		});
+		clear.setFont(new Font("Tahoma", Font.BOLD, 20));
+		clear.setBounds(812, 516, 136, 42);
+		getContentPane().add(clear);
 		setSize(1186, 667);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
