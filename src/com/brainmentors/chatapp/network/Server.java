@@ -19,6 +19,7 @@ public class Server {
 		byte arr[] = in.readAllBytes();
 		String str = new String(arr); //bytes to string conversion
 		System.out.println("Message Recieved : " + str);
+		in.close();
 		
 		
 		socket.close();

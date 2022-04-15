@@ -21,7 +21,7 @@ public class Client {
 		 OutputStream out = socket.getOutputStream(); //write bytes on network
 		 out.write(message.getBytes());
 		 System.out.println("Message sent to the server");
-		 scanner.close();
+		 scanner.close(); 
 		 out.close();
 		 socket.close();
 	}
