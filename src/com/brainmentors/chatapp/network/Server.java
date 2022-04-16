@@ -29,7 +29,7 @@ public class Server {
 			
 			//we are going to assign each client to a thread
 			
-			ServerWorker serverWorker = new ServerWorker(clientSocket);
+			ServerWorker serverWorker = new ServerWorker(clientSocket, this);  //passing server instance through this
 			workers.add(serverWorker);
 			serverWorker.start();
 		}
