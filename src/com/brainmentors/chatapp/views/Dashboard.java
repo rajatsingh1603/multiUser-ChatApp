@@ -15,6 +15,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class Dashboard extends JFrame {
@@ -46,6 +47,16 @@ public class Dashboard extends JFrame {
 		menuBar.add(chatmenu);
 		
 		JMenuItem startChat = new JMenuItem("Start Chat");
+		startChat.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					new ClientChatScreen();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		chatmenu.add(startChat);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

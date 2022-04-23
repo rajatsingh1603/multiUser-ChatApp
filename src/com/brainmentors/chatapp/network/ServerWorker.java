@@ -20,6 +20,7 @@ public class ServerWorker extends Thread{
 		this.clientSocket = clientSocket;
 		in = clientSocket.getInputStream(); //read client data
 		out = clientSocket.getOutputStream(); //write client data
+		System.out.println("New Client Comes.");
 	}
 	@Override
 	public void run() {
@@ -31,6 +32,7 @@ public class ServerWorker extends Thread{
 		while(true) { //read data until we are recieving the data
 			
 				line = br.readLine(); //we have taken the data
+				System.out.println("Line Read "+ line);
 				if(line.equalsIgnoreCase("quit")) {
 					break; //client chat ended if he says quit
 				}
@@ -39,6 +41,7 @@ public class ServerWorker extends Thread{
 				
 				for(ServerWorker serverWorker : server.workers) { //through server.workers we are getting all the workers from servers
 					
+					line = line + "\n";
 					serverWorker.out.write(line.getBytes()); //now it is broadcasting the message to all clients
 				}
 			} 

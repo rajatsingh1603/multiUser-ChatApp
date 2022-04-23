@@ -39,6 +39,7 @@ public class Client {
 	}
 	
 	public void sendMessage(String message) throws IOException {
+		message = message + "\n"; //because needed \n to tell the termainal that data is coming
 		out.write(message.getBytes());
 	}
 	

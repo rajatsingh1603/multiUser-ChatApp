@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.brainmentors.chatapp.network.Client;
+import com.brainmentors.chatapp.utils.UserInfo;
 
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
@@ -22,6 +23,7 @@ import java.awt.event.ActionEvent;
 public class ClientChatScreen extends JFrame {
 
 	private JPanel contentPane;
+	
 	private JTextField textField;
 	private JTextArea textArea;
 	private Client client;
@@ -36,9 +38,9 @@ public class ClientChatScreen extends JFrame {
 	
 	private void sendMessage() {
 		//extract the message 
-		String message = textArea.getText();
+		String message = textField.getText();
 		try {
-			client.sendMessage(message);
+			client.sendMessage(UserInfo.USER_NAME + "-" + message);
 		} catch (IOException e) {
 			
 			e.printStackTrace();
@@ -59,14 +61,14 @@ public class ClientChatScreen extends JFrame {
 		setTitle("Chit Chat");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 832, 490);
+		setBounds(100, 100, 727, 423);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 6, 792, 357);
+		scrollPane.setBounds(10, 6, 698, 317);
 		contentPane.add(scrollPane);
 		
 		
@@ -76,7 +78,7 @@ public class ClientChatScreen extends JFrame {
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.BOLD, 16));
-		textField.setBounds(10, 394, 655, 49);
+		textField.setBounds(10, 333, 569, 49);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
@@ -87,8 +89,9 @@ public class ClientChatScreen extends JFrame {
 			}
 		});
 		sendButton.setFont(new Font("Tahoma", Font.BOLD, 15));
-		sendButton.setBounds(675, 394, 127, 49);
+		sendButton.setBounds(588, 333, 127, 49);
 		contentPane.add(sendButton);
+		setVisible(true);
 		
 		
 	}

@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 
 import com.brainmentors.chatapp.dao.UserDAO;
 import com.brainmentors.chatapp.dto.UserDTO;
+import com.brainmentors.chatapp.utils.UserInfo;
 
 public class UserScreen extends JFrame {
 	private JTextField textField;
@@ -65,6 +66,7 @@ public class UserScreen extends JFrame {
 			String message = "";
 			if(userDAO.isLogin(userDTO)) {
 				message = "Welcome " + userId;
+				UserInfo.USER_NAME = userId;
 				JOptionPane.showMessageDialog(this, message);
 				setVisible(false);
 				dispose(); //removes from memory

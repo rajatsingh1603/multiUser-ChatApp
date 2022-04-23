@@ -1,5 +1,6 @@
 package com.brainmentors.chatapp.network;
 
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
@@ -16,6 +17,7 @@ public class Server {
 		
 		int PORT = Integer.parseInt(ConfigReader.getValue("PORTNO"));
 		serverSocket = new ServerSocket(PORT);
+		System.out.println("Server started and waiting for the client to join...");
 		handleClientRequest();
 		
 		
