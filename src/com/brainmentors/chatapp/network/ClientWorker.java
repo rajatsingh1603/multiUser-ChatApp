@@ -25,7 +25,7 @@ public class ClientWorker extends Thread {
 		 try {
 		while(true) {
 			line = br.readLine(); //data has come
-			textArea.setText(textArea.getText() +line );  
+			textArea.setText(textArea.getText() +line);  
 			// getText() is for previous message , line is for current message
 			// "\n" is added so that on new message send it will show on a new line
 		}

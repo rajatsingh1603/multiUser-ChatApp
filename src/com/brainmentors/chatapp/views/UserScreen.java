@@ -15,11 +15,14 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import org.apache.log4j.Logger;
+
 import com.brainmentors.chatapp.dao.UserDAO;
 import com.brainmentors.chatapp.dto.UserDTO;
 import com.brainmentors.chatapp.utils.UserInfo;
 
 public class UserScreen extends JFrame {
+	Logger logger = Logger.getLogger(UserScreen.class);
 	private JTextField textField;
 	private JPasswordField passwordField;
 	private JTextField emailField;
@@ -57,6 +60,7 @@ public class UserScreen extends JFrame {
 	
 	private void doLogin() {
 		
+		logger.debug("Inside the do login");
 		String userId = textField.getText();
 		char [] password = passwordField.getPassword(); //getpassword for not showing password on console
 		
@@ -72,6 +76,7 @@ public class UserScreen extends JFrame {
 				dispose(); //removes from memory
 				Dashboard dashboard = new Dashboard(message); 
 				dashboard.setVisible(true);
+				logger.debug("In an new screen");
 			}
 			else {
 				message = "Invalid userId or Password";
@@ -81,6 +86,7 @@ public class UserScreen extends JFrame {
 //			JOptionPane.showMessageDialog(this, message);
 		} catch (ClassNotFoundException | NoSuchAlgorithmException | SQLException e) {
 			// TODO Auto-generated catch block
+			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
 		
